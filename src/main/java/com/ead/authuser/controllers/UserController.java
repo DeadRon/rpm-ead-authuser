@@ -1,7 +1,7 @@
 package com.ead.authuser.controllers;
 
 
-import com.ead.authuser.configs.AuthenticationCurrentUserService;
+import com.ead.authuser.configs.security.AuthenticationCurrentUserService;
 import com.ead.authuser.dtos.UserDto;
 import com.ead.authuser.models.UserModel;
 import com.ead.authuser.services.UserService;
@@ -42,7 +42,7 @@ public class UserController {
     @Autowired
     AuthenticationCurrentUserService authenticationCurrentUserService;
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'STUDENT')") //define as rules que podem ter acesso a esse método exclusivo
+    @PreAuthorize("hasAnyRole('ADMIN')") //define as rules que podem ter acesso a esse método exclusivo
     @GetMapping
     public ResponseEntity<Page<UserModel>> getAllUsers(SpecificationTemplate.UserSpec spec,
                                                        @PageableDefault(page = 0, size = 10, sort = "userId", direction = Sort.Direction.ASC) Pageable pageable,
